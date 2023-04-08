@@ -4,10 +4,10 @@ const controller = require('./controller')
 const router = Router()
 
 router.get("/", controller.getMedicos)
-router.get("/:id", controller.getMedicosById)
+router.get("/:numero_colegiado", controller.getMedicoByNum)
 
 router.post("/", controller.addMedico)
 
-router.put("/:id", controller.updateMedico)
+router.put("/:numero_colegiado", controller.updateMedico)
 
 module.exports = router

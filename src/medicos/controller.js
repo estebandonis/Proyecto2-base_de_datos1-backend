@@ -13,10 +13,10 @@ const getMedicos = (req, res) => {
     })
 }
 
-const getMedicosById = (req, res) => {
-    const id = parseInt(req.params.id)
+const getMedicoByNum = (req, res) => {
+    const numero_colegiado = req.params.numero_colegiado
 
-    pool.query(queries.getMedicoById, [id], (error, results) => {
+    pool.query(queries.getMedicoByNum, [numero_colegiado], (error, results) => {
         if (error) throw error
         res.status(200).json(results.rows)
     })
@@ -41,16 +41,16 @@ const addMedico = (req, res) => {
 }
 
 const updateMedico = (req, res) => {
-    const id = parseInt(req.params.id)
+    const numero_colegiado = req.params.numero_colegiado
     const { nombre } = req.body
 
-    pool.query(queries.getMedicoById, [id], (error, results) => {
+    pool.query(queries.getMedicoByNum, [numero_colegiado], (error, results) => {
         const noExisteMedico = !results.rows.length
         if (noExisteMedico) {
             res.send("El medico no existe")
         }
 
-        pool.query(queries.updateMedico, [nombre, id], (error, results) => {
+        pool.query(queries.updateMedico, [nombre, numero_colegiado], (error, results) => {
             if (error) throw error
             res.status(200).send("Medico actualizado exitosamente")
         })
@@ -59,7 +59,7 @@ const updateMedico = (req, res) => {
 
 module.exports = {
     getMedicos,
-    getMedicosById,
+    getMedicoByNum,
     addMedico,
     updateMedico,
 }
