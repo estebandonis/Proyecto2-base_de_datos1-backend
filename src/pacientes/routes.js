@@ -7,4 +7,6 @@ router.get('/', controller.getPacientes);
 router.get('/:id', controller.getPacienteById);
 
 
+router.post("/", controller.addPaciente);
+
 module.exports = router;

@@ -1,9 +1,9 @@
 const getPacientes = 'SELECT * FROM pacientes';
-const getPacienteById = "SELECT * FROM pacientes WHERE pacienteid = $1"
-const checkNumColExists = "SELECT nombre FROM medicos WHERE numero_colegiado = $1"
-const addPaciente = "INSERT INTO medicos (nombre, apellido, direccion, telefono, numero_colegiado, especialidad, lugarid) VALUES ($1, $2, $3, $4, $5, $6, $7)"
+const getPacienteById = "SELECT * FROM pacientes WHERE pacienteid = $1";
+const checkPacienteExists= "SELECT nombre FROM pacientes WHERE dpi = $1";
+const addPaciente = "INSERT INTO pacientes (nombre, apellido, telefono, direccion, masa_corporal, altura, peso, adicciones,evoluciones,status,dpi) VALUES ($1, $2, $3, $4, $5, $6, $7,$8,$9,$10,$11,$12)"
 const updatePaciente = "UPDATE pacientes SET nombre = $1 WHERE pacienteid = $2"
 
 module.exports ={
-    getPacientes, getPacienteById,
+    getPacientes, getPacienteById, addPaciente, checkPacienteExists,
 }
