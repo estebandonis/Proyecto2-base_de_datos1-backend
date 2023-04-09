@@ -40,9 +40,9 @@ const addMedico = (req, res) => {
     })
 }
 
-const updateMedico = (req, res) => {
+const updateMedicoNombre = (req, res) => {
     const numero_colegiado = req.params.numero_colegiado
-    const { nombre } = req.body
+    const nombre = req.params.nombre
 
     pool.query(queries.getMedicoByNum, [numero_colegiado], (error, results) => {
         const noExisteMedico = !results.rows.length
@@ -50,7 +50,92 @@ const updateMedico = (req, res) => {
             res.send("El medico no existe")
         }
 
-        pool.query(queries.updateMedico, [nombre, numero_colegiado], (error, results) => {
+        pool.query(queries.updateMedicoNombre, [nombre, numero_colegiado], (error, results) => {
+            if (error) throw error
+            res.status(200).send("Medico actualizado exitosamente")
+        })
+    })
+}
+
+const updateMedicoApellido = (req, res) => {
+    const numero_colegiado = req.params.numero_colegiado
+    const apellido = req.params.apellido
+
+    pool.query(queries.getMedicoByNum, [numero_colegiado], (error, results) => {
+        const noExisteMedico = !results.rows.length
+        if (noExisteMedico) {
+            res.send("El medico no existe")
+        }
+
+        pool.query(queries.updateMedicoApellido, [apellido, numero_colegiado], (error, results) => {
+            if (error) throw error
+            res.status(200).send("Medico actualizado exitosamente")
+        })
+    })
+}
+
+const updateMedicoDireccion = (req, res) => {
+    const numero_colegiado = req.params.numero_colegiado
+    const direccion = req.params.direccion
+
+    pool.query(queries.getMedicoByNum, [numero_colegiado], (error, results) => {
+        const noExisteMedico = !results.rows.length
+        if (noExisteMedico) {
+            res.send("El medico no existe")
+        }
+
+        pool.query(queries.updateMedicoDireccion, [direccion, numero_colegiado], (error, results) => {
+            if (error) throw error
+            res.status(200).send("Medico actualizado exitosamente")
+        })
+    })
+}
+
+const updateMedicoTelefono = (req, res) => {
+    const numero_colegiado = req.params.numero_colegiado
+    const telefono = req.params.telefono
+
+    pool.query(queries.getMedicoByNum, [numero_colegiado], (error, results) => {
+        const noExisteMedico = !results.rows.length
+        if (noExisteMedico) {
+            res.send("El medico no existe")
+        }
+
+        pool.query(queries.updateMedicoTelefono, [telefono, numero_colegiado], (error, results) => {
+            if (error) throw error
+            res.status(200).send("Medico actualizado exitosamente")
+        })
+    })
+}
+
+const updateMedicoEspecialidad = (req, res) => {
+    const numero_colegiado = req.params.numero_colegiado
+    const especialidad = req.params.especialidad
+
+    pool.query(queries.getMedicoByNum, [numero_colegiado], (error, results) => {
+        const noExisteMedico = !results.rows.length
+        if (noExisteMedico) {
+            res.send("El medico no existe")
+        }
+
+        pool.query(queries.updateMedicoEspecialidad, [especialidad, numero_colegiado], (error, results) => {
+            if (error) throw error
+            res.status(200).send("Medico actualizado exitosamente")
+        })
+    })
+}
+
+const updateMedicoLugarId = (req, res) => {
+    const numero_colegiado = req.params.numero_colegiado
+    const lugarid = req.params.lugarid
+
+    pool.query(queries.getMedicoByNum, [numero_colegiado], (error, results) => {
+        const noExisteMedico = !results.rows.length
+        if (noExisteMedico) {
+            res.send("El medico no existe")
+        }
+
+        pool.query(queries.updateMedicoLugarId, [lugarid, numero_colegiado], (error, results) => {
             if (error) throw error
             res.status(200).send("Medico actualizado exitosamente")
         })
@@ -61,5 +146,10 @@ module.exports = {
     getMedicos,
     getMedicoByNum,
     addMedico,
-    updateMedico,
+    updateMedicoNombre,
+    updateMedicoApellido,
+    updateMedicoDireccion,
+    updateMedicoTelefono,
+    updateMedicoEspecialidad,
+    updateMedicoLugarId,
 }
