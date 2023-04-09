@@ -4,10 +4,15 @@ const controller = require('./controller')
 const router = Router()
 
 router.get("/", controller.getMedicos)
-router.get("/:id", controller.getMedicosById)
+router.get("/:numero_colegiado", controller.getMedicoByNum)
 
 router.post("/", controller.addMedico)
 
-router.put("/:id", controller.updateMedico)
+router.put("/cambiar_nombre/:numero_colegiado&:nombre", controller.updateMedicoNombre)
+router.put("/cambiar_apellido/:numero_colegiado&:apellido", controller.updateMedicoApellido)
+router.put("/cambiar_direccion/:numero_colegiado&:direccion", controller.updateMedicoDireccion)
+router.put("/cambiar_telefono/:numero_colegiado&:telefono", controller.updateMedicoTelefono)
+router.put("/cambiar_especialidad/:numero_colegiado&:especialidad", controller.updateMedicoEspecialidad)
+router.put("/cambiar_lugarid/:numero_colegiado&:lugarid", controller.updateMedicoLugarId)
 
 module.exports = router
