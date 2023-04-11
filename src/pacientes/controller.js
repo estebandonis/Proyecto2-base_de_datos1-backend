@@ -52,7 +52,7 @@ console.log(nombre)
             res.send("El paciente no existe")
         }
         console.log("Pasó")
-        pool.query(queries.updatePacienteNombre, [nombre, pacienteid], (error, results) => {
+        pool.query(queries.updatePacienteNombre, [nombre, dpi], (error, results) => {
             if (error) throw error
             res.status(200).send("Paciente actualizado exitosamente")
         })
