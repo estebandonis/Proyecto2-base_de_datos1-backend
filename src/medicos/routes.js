@@ -6,7 +6,7 @@ const router = Router()
 router.get("/", controller.getMedicos)
 router.get("/:numero_colegiado", controller.getMedicoByNum)
 
-router.post("/", controller.addMedico)
+router.post("/:one&:two&:three&:four&:five&:six&:seven", controller.addMedico)
 
 router.put("/cambiar_nombre/:numero_colegiado&:nombre", controller.updateMedicoNombre)
 router.put("/cambiar_apellido/:numero_colegiado&:apellido", controller.updateMedicoApellido)

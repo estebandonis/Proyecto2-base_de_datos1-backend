@@ -43,8 +43,80 @@ const addUsuarios = (req, res) => {
     })
 }
 
+const updateCorreo = (req, res) => {
+    const correo = req.params.one
+    const numero_colegiado = req.params.two
+
+    pool.query(queries.getByNum, [numero_colegiado], (error, results) => {
+        const noExisteUsuario = !results.rows.length
+        if (noExisteUsuario) {
+            res.send("El usuario no existe")
+        }
+
+        pool.query(queries.updateCorreo, [correo, numero_colegiado], (error, results) => {
+            if (error) throw error
+            res.status(200).send("Usuario actualizado exitosamente")
+        })
+    })
+}
+
+const updateContraseña = (req, res) => {
+    const contraseña = req.params.one
+    const numero_colegiado = req.params.two
+
+    pool.query(queries.getByNum, [numero_colegiado], (error, results) => {
+        const noExisteUsuario = !results.rows.length
+        if (noExisteUsuario) {
+            res.send("El usuario no existe")
+        }
+
+        pool.query(queries.updateContraseña, [contraseña, numero_colegiado], (error, results) => {
+            if (error) throw error
+            res.status(200).send("Usuario actualizado exitosamente")
+        })
+    })
+}
+
+const updateNum = (req, res) => {
+    const nuevo = req.params.one
+    const numero_colegiado = req.params.two
+
+    pool.query(queries.getByNum, [numero_colegiado], (error, results) => {
+        const noExisteUsuario = !results.rows.length
+        if (noExisteUsuario) {
+            res.send("El usuario no existe")
+        }
+
+        pool.query(queries.updateNum, [nuevo, numero_colegiado], (error, results) => {
+            if (error) throw error
+            res.status(200).send("Usuario actualizado exitosamente")
+        })
+    })
+}
+
+const updateLugarid = (req, res) => {
+    const lugarid = parseInt(req.params.one)
+    const numero_colegiado = req.params.two
+
+    pool.query(queries.getByNum, [numero_colegiado], (error, results) => {
+        const noExisteUsuario = !results.rows.length
+        if (noExisteUsuario) {
+            res.send("El usuario no existe")
+        }
+
+        pool.query(queries.updateLugarid, [lugarid, numero_colegiado], (error, results) => {
+            if (error) throw error
+            res.status(200).send("Usuario actualizado exitosamente")
+        })
+    })
+}
+
 module.exports = {
     getTipo,
     getUsuarios,
     addUsuarios,
+    updateCorreo,
+    updateContraseña,
+    updateNum,
+    updateLugarid,
 }

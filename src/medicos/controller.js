@@ -23,7 +23,13 @@ const getMedicoByNum = (req, res) => {
 }
 
 const addMedico = (req, res) => {
-    const { nombre, apellido, direccion, telefono, numero_colegiado, especialidad, lugarid } = req.body
+    const nombre = req.params.one
+    const apellido = req.params.two
+    const direccion = req.params.three
+    const telefono = req.params.four
+    const numero_colegiado = req.params.five
+    const especialidad = req.params.six
+    const lugarid = req.params.seven
 
     // verificar si ya existe el numero de colegiado
     pool.query(queries.checkNumColExists, [numero_colegiado], (error, results) => {
