@@ -13,10 +13,19 @@ const getPacientes = (req,res)=>{
 
     })
 }
-const getPacienteById = (req,res) => {
+const getPacienteByDPI = (req,res) => {
     const dpi = req.params.dpi
 
     pool.query(queries. getPacienteByDpi, [dpi], (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+
+const getPacienteId = (req,res) => {
+    const dpi = req.params.dpi
+
+    pool.query(queries. getPacienteId, [dpi], (error, results) => {
         if (error) throw error
         res.status(200).json(results.rows)
     })
@@ -210,7 +219,7 @@ const updatePacienteEstatus= (req, res) => {
 
 
 module.exports ={
-    getPacientes, getPacienteById, addPaciente, updatePacienteNombre, updatePacienteApellido,
+    getPacientes, getPacienteByDPI, getPacienteId, addPaciente, updatePacienteNombre, updatePacienteApellido,
      updatePacienteTelefono, updatePacienteDireccion, updatePacienteMasa, updatePacienteAltura,
       updatePacientePeso, updatePacienteAdicciones, updatePacienteEvoluciones, updatePacienteEstatus,
 }

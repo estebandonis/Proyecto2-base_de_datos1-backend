@@ -22,6 +22,42 @@ const getVisitasBypacienteID = (req,res) => {
     })
 }
 
+const getExamenesByDPI = (req,res) => {
+    const dpi = req.params.dpi
+
+    pool.query(queries. getExamenesByDPI, [dpi], (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+
+const getCirugiasByDPI = (req,res) => {
+    const dpi = req.params.dpi
+
+    pool.query(queries. getCirugiasByDPI, [dpi], (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+
+const getMedicosOfPaciente = (req,res) => {
+    const dpi = req.params.dpi
+
+    pool.query(queries. getMedicosOfPaciente, [dpi], (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+
+const getMedicamentosYEvolucion = (req,res) => {
+    const dpi = req.params.dpi
+
+    pool.query(queries. getMedicamentosYEvolucion, [dpi], (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+
 const addVisita = (req, res) => {
     const { visitaid, pacienteid, fecha, hora, lugarid, medicoid, examen,enfermedadid,medicamentos,evolucion } = req.body
 
@@ -42,5 +78,5 @@ const addVisita = (req, res) => {
 
 
 module.exports ={
-    getVisitas, getVisitasBypacienteID, addVisita,
+    getVisitas, getVisitasBypacienteID, addVisita, getExamenesByDPI, getCirugiasByDPI, getMedicosOfPaciente, getMedicamentosYEvolucion
 }

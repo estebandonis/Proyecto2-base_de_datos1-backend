@@ -1,4 +1,5 @@
 const getPacientes = 'SELECT * FROM pacientes';
+const getPacienteId = 'SELECT pacienteid FROM pacientes WHERE dpi = $1'
 const getPacienteByDpi= "SELECT * FROM pacientes WHERE dpi = $1";
 const checkPacienteExists= "SELECT nombre FROM pacientes WHERE dpi= $1";
 const addPaciente = "INSERT INTO pacientes (nombre, apellido, telefono, direccion, masa_corporal, altura, peso, adicciones,evoluciones,status,dpi) VALUES ($1, $2, $3, $4, $5, $6, $7,$8,$9,$10,$11,$12)"
@@ -14,7 +15,7 @@ const updatePacientEvoluciones = "UPDATE pacientes SET evoluciones = $1 WHERE dp
 const updatePacienteEstatus = "UPDATE pacientes SET status = $1 WHERE dpi = $2";
 
 module.exports ={
-    getPacientes, getPacienteByDpi, addPaciente, checkPacienteExists, updatePacienteNombre, 
+    getPacientes, getPacienteId, getPacienteByDpi, addPaciente, checkPacienteExists, updatePacienteNombre, 
     updatePacienteApellido, updatePacienteTelefono,updatePacienteDireccion,updatePacienteMasa,
     updatePacienteAltura, updatePacientePeso, updatePacienteAdicciones, updatePacientEvoluciones, updatePacienteEstatus,
 }

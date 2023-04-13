@@ -4,7 +4,8 @@ const controller = require('./controller');
 const router = Router()
 
 router.get('/', controller.getPacientes);
-router.get('/:dpi', controller.getPacienteById);
+router.get('/:dpi', controller.getPacienteByDPI);
+router.get('/getid/:dpi', controller.getPacienteId);
 
 
 router.post("/", controller.addPaciente);
