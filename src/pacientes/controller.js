@@ -33,7 +33,17 @@ const getPacienteId = (req,res) => {
 
 
 const addPaciente = (req, res) => {
-    const { nombre, apellido, telefono, direccion, masa_corporal, altura, peso, adicciones,evoluciones,status,dpi } = req.body
+    const nombre = req.params.one
+    const apellido = req.params.two
+    const telefono = req.params.three
+    const direccion = req.params.four
+    const masa_corporal = parseFloat(req.params.five)
+    const altura = parseInt(req.params.six)
+    const peso = parseFloat(req.params.seven)
+    const adicciones = req.params.eight
+    const evoluciones = req.params.nine
+    const status = req.params.ten
+    const dpi = req.params.eleven
 
     // verificar si ya existe el numero de colegiado
     pool.query(queries.checkPacienteExists, [dpi], (error, results) => {
@@ -53,14 +63,11 @@ const addPaciente = (req, res) => {
 const updatePacienteNombre = (req, res) => {
     const dpi = req.params.dpi
     const nombre = req.params.nombre
-console.log(dpi)
-console.log(nombre)
     pool.query(queries. getPacienteByDpi, [dpi], (error, results) => {
         const noExistePaciente = !results.rows.length
         if (noExistePaciente) {
             res.send("El paciente no existe")
         }
-        console.log("Pasó")
         pool.query(queries.updatePacienteNombre, [nombre, dpi], (error, results) => {
             if (error) throw error
             res.status(200).send("Paciente actualizado exitosamente")
@@ -95,7 +102,7 @@ const updatePacienteTelefono = (req, res) => {
             res.send("El paciente no existe")
         }
 
-        pool.query(queries.getPacienteByDpi, [telefono, dpi], (error, results) => {
+        pool.query(queries.updatePacienteTelefono, [telefono, dpi], (error, results) => {
             if (error) throw error
             res.status(200).send("Paciente actualizado exitosamente")
         })
@@ -111,7 +118,7 @@ const updatePacienteDireccion = (req, res) => {
             res.send("El paciente no existe")
         }
 
-        pool.query(queries.getPacienteByDpi, [direccion, dpi], (error, results) => {
+        pool.query(queries.updatePacienteDireccion, [direccion, dpi], (error, results) => {
             if (error) throw error
             res.status(200).send("Paciente actualizado exitosamente")
         })
@@ -120,7 +127,7 @@ const updatePacienteDireccion = (req, res) => {
 
 const updatePacienteMasa = (req, res) => {
     const dpi = req.params.dpi
-    const masa = req.params.masa_corporal
+    const masa = parseFloat(req.params.masa_corporal)
 
     pool.query(queries.getPacienteByDpi, [dpi], (error, results) => {
         const noExistePaciente = !results.rows.length
@@ -128,7 +135,7 @@ const updatePacienteMasa = (req, res) => {
             res.send("El paciente no existe")
         }
 
-        pool.query(queries.getPacienteByDpi, [masa, dpi], (error, results) => {
+        pool.query(queries.updatePacienteMasa, [masa, dpi], (error, results) => {
             if (error) throw error
             res.status(200).send("Paciente actualizado exitosamente")
         })
@@ -137,15 +144,17 @@ const updatePacienteMasa = (req, res) => {
 
 const updatePacienteAltura= (req, res) => {
     const dpi = req.params.dpi
-    const altura = req.params.altura
+    const altura = parseInt(req.params.altura)
+    console.log(dpi)
+    console.log(altura)
 
     pool.query(queries.getPacienteByDpi, [dpi], (error, results) => {
         const noExistePaciente = !results.rows.length
         if (noExistePaciente) {
             res.send("El paciente no existe")
         }
-
-        pool.query(queries.getPacienteByDpi, [altura, dpi], (error, results) => {
+        console.log("paso")
+        pool.query(queries.updatePacienteAltura, [altura, dpi], (error, results) => {
             if (error) throw error
             res.status(200).send("Paciente actualizado exitosamente")
         })
@@ -154,7 +163,7 @@ const updatePacienteAltura= (req, res) => {
 
 const updatePacientePeso= (req, res) => {
     const dpi = req.params.dpi
-    const altura = req.params.peso
+    const peso = parseFloat(req.params.peso)
 
     pool.query(queries.getPacienteByDpi, [dpi], (error, results) => {
         const noExistePaciente = !results.rows.length
@@ -162,7 +171,7 @@ const updatePacientePeso= (req, res) => {
             res.send("El paciente no existe")
         }
 
-        pool.query(queries.getPacienteByDpi, [peso, dpi], (error, results) => {
+        pool.query(queries.updatePacientePeso, [peso, dpi], (error, results) => {
             if (error) throw error
             res.status(200).send("Paciente actualizado exitosamente")
         })
@@ -178,7 +187,7 @@ const updatePacienteAdicciones= (req, res) => {
             res.send("El paciente no existe")
         }
 
-        pool.query(queries.getPacienteByDpi, [adicciones, dpi], (error, results) => {
+        pool.query(queries.updatePacienteAdicciones, [adicciones, dpi], (error, results) => {
             if (error) throw error
             res.status(200).send("Paciente actualizado exitosamente")
         })
@@ -194,7 +203,7 @@ const updatePacienteEvoluciones= (req, res) => {
             res.send("El paciente no existe")
         }
 
-        pool.query(queries.getPacienteByDpi, [evoluciones, dpi], (error, results) => {
+        pool.query(queries.updatePacientEvoluciones, [evoluciones, dpi], (error, results) => {
             if (error) throw error
             res.status(200).send("Paciente actualizado exitosamente")
         })
@@ -210,7 +219,7 @@ const updatePacienteEstatus= (req, res) => {
             res.send("El paciente no existe")
         }
 
-        pool.query(queries.getPacienteByDpi, [estatus, dpi], (error, results) => {
+        pool.query(queries.updatePacienteEstatus, [estatus, dpi], (error, results) => {
             if (error) throw error
             res.status(200).send("Paciente actualizado exitosamente")
         })

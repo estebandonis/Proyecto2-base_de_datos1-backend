@@ -8,7 +8,7 @@ router.get('/:dpi', controller.getPacienteByDPI);
 router.get('/getid/:dpi', controller.getPacienteId);
 
 
-router.post("/", controller.addPaciente);
+router.post("/:one&:two&:three&:four&:five&:six&:seven&:eight&:nine&:ten&:eleven", controller.addPaciente);
 
 router.put("/cambiar_nombre/:dpi&:nombre", controller.updatePacienteNombre);
 router.put("/cambiar_apellido/:dpi&:apellido", controller.updatePacienteApellido);
