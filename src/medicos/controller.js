@@ -13,6 +13,15 @@ const getMedicos = (req, res) => {
     })
 }
 
+const getMedicosByLugarid = (req, res) => {
+    const lugarid = req.params.lugarid
+
+    pool.query(queries.getMedicosByLugarid, [lugarid], (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+
 const getMedicoByNum = (req, res) => {
     const numero_colegiado = req.params.numero_colegiado
 
@@ -150,6 +159,7 @@ const updateMedicoLugarId = (req, res) => {
 
 module.exports = {
     getMedicos,
+    getMedicosByLugarid,
     getMedicoByNum,
     addMedico,
     updateMedicoNombre,

@@ -3,10 +3,11 @@ const controller = require('./controller')
 
 const router = Router()
 
-router.get("/:one&:two", controller.getTipo)
+router.get("/:one&:two", controller.getTipoyLugarid)
 router.get("/", controller.getUsuarios)
+router.get("/by_lugarid/:lugarid", controller.getUsuariosByLugarid)
 
-router.post("/:one&:two&:three", controller.addUsuarios)
+router.post("/:one&:two&:three&:four", controller.addUsuarios)
 
 router.put("/update_correo/:one&:two", controller.updateCorreo)
 router.put("/update_password/:one&:two", controller.updateContraseña)

@@ -4,6 +4,7 @@ const controller = require('./controller')
 const router = Router()
 
 router.get("/", controller.getMedicos)
+router.get("/by_lugarid/:lugarid", controller.getMedicosByLugarid)
 router.get("/:numero_colegiado", controller.getMedicoByNum)
 
 router.post("/:one&:two&:three&:four&:five&:six&:seven", controller.addMedico)

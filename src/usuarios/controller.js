@@ -6,11 +6,11 @@ const { parse } = require('path')
 const { NOMEM } = require('dns')
 
 
-const getTipo = (req, res) => {
+const getTipoyLugarid = (req, res) => {
     const correo = req.params.one
     const contraseña = req.params.two
 
-    pool.query(queries.getTipo, [correo, contraseña], (error, results) => {
+    pool.query(queries.getTipoyLugarid, [correo, contraseña], (error, results) => {
         if (error) throw error
         res.status(200).json(results.rows)
     })
@@ -25,10 +25,21 @@ const getUsuarios = (req, res) => {
     })
 }
 
+const getUsuariosByLugarid = (req, res) => {
+    const lugarid = req.params.lugarid
+
+    pool.query(queries.getUsuariosByLugarid, [lugarid], (error, results) => {
+        
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+
 const addUsuarios = (req, res) => {
     const correo = req.params.one
     const contraseña = req.params.two
     const num_colegiado = req.params.three
+    const lugarid = req.params.four
 
     pool.query(queries.getByNum, [num_colegiado], (error, results) => {
 
@@ -36,7 +47,7 @@ const addUsuarios = (req, res) => {
             res.send("Ya han registrado con este numero de colegiado")
         }
 
-        pool.query(queries.addUsuario, [correo, contraseña, num_colegiado], (error, results) => {
+        pool.query(queries.addUsuario, [correo, contraseña, num_colegiado, lugarid], (error, results) => {
             if (error) throw error
             res.status(201).send("Usuarios registrado existosamente")
         })
@@ -112,8 +123,9 @@ const updateLugarid = (req, res) => {
 }
 
 module.exports = {
-    getTipo,
+    getTipoyLugarid,
     getUsuarios,
+    getUsuariosByLugarid,
     addUsuarios,
     updateCorreo,
     updateContraseña,

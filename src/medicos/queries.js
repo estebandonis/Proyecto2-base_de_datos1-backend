@@ -1,4 +1,5 @@
 const getMedicos = "SELECT * FROM medicos ORDER BY medicoid ASC"
+const getMedicosByLugarid = "SELECT * FROM medicos WHERE lugarid = $1 ORDER BY medicoid ASC"
 const getMedicoByNum = "SELECT * FROM medicos WHERE numero_colegiado = $1"
 const checkNumColExists = "SELECT nombre FROM medicos WHERE numero_colegiado = $1"
 const addMedico = "INSERT INTO medicos (nombre, apellido, direccion, telefono, numero_colegiado, especialidad, lugarid) VALUES ($1, $2, $3, $4, $5, $6, $7)"
@@ -11,6 +12,7 @@ const updateMedicoLugarId = "UPDATE medicos SET lugarid = $1 WHERE numero_colegi
 
 module.exports = {
     getMedicos,
+    getMedicosByLugarid,
     getMedicoByNum,
     checkNumColExists,
     addMedico,
