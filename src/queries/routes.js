@@ -7,6 +7,7 @@ router.get('/get_pacientesvisitas/', controller.getNombreMedicos);
 router.get('/enfermedades_mortales/', controller.getTopEnfermedades);
 router.get('/reporte_mensual/', controller.getreporteMensual);
 router.get('/top_hospitales/', controller.getTopHospitales);
+router.get('/top_medicos/', controller.getTopMedicos);
 
 
 module.exports = router;

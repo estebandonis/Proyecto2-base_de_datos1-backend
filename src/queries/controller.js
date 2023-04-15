@@ -32,10 +32,16 @@ const getTopHospitales = (req, res) => {
     })
 }
 
+const getTopMedicos = (req, res) => {
+    pool.query(queries.getTopMedicos, (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
 
 
 
 
 module.exports ={
-    getNombreMedicos, getTopEnfermedades, getreporteMensual, getTopHospitales
+    getNombreMedicos, getTopEnfermedades, getreporteMensual, getTopHospitales, getTopMedicos,
 }
