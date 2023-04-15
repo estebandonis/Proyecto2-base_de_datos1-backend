@@ -12,6 +12,36 @@ const getNombreMedicos = (req, res) => {
     })
 }
 
+const getTopEnfermedades = (req, res) => {
+    pool.query(queries.getTopEnfermedades, (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+const getreporteMensual = (req, res) => {
+    pool.query(queries.getreporteMensual, (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+
+const getTopHospitales = (req, res) => {
+    pool.query(queries.getTopHospitales, (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+
+const getTopMedicos = (req, res) => {
+    pool.query(queries.getTopMedicos, (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+
+
+
+
 module.exports ={
-    getNombreMedicos
+    getNombreMedicos, getTopEnfermedades, getreporteMensual, getTopHospitales, getTopMedicos,
 }
