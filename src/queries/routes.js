@@ -3,6 +3,10 @@ const controller = require('./controller');
 
 const router = Router()
 
-router.get('/get_nombre_medicos/', controller.getNombreMedicos);
+router.get('/get_pacientesvisitas/', controller.getNombreMedicos);
+router.get('/enfermedades_mortales/', controller.getTopEnfermedades);
+router.get('/reporte_mensual/', controller.getreporteMensual);
+router.get('/top_hospitales/', controller.getTopHospitales);
+
 
 module.exports = router;
