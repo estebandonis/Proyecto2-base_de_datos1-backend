@@ -19,7 +19,9 @@ const getTopEnfermedades = (req, res) => {
     })
 }
 const getreporteMensual = (req, res) => {
-    pool.query(queries.getreporteMensual, (error, results) => {
+    const lugarid = req.params.lugarid
+
+    pool.query(queries.getreporteMensual, [lugarid], (error, results) => {
         if (error) throw error
         res.status(200).json(results.rows)
     })
