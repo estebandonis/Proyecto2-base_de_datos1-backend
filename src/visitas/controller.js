@@ -49,10 +49,28 @@ const getMedicosOfPaciente = (req,res) => {
     })
 }
 
+const getLugaresVisitados = (req,res) => {
+    const dpi = req.params.dpi
+
+    pool.query(queries. getLugaresVisitados, [dpi], (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+
 const getMedicamentosYEvolucion = (req,res) => {
     const dpi = req.params.dpi
 
-    pool.query(queries. getMedicamentosYEvolucion, [dpi], (error, results) => {
+    pool.query(queries.getMedicamentosYEvolucion, [dpi], (error, results) => {
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+
+const getVisitasEspecificas = (req,res) => {
+    const dpi = req.params.dpi
+
+    pool.query(queries.getVisitasEspecificas, [dpi], (error, results) => {
         if (error) throw error
         res.status(200).json(results.rows)
     })
@@ -78,5 +96,5 @@ const addVisita = (req, res) => {
 
 
 module.exports ={
-    getVisitas, getVisitasBypacienteID, addVisita, getExamenesByDPI, getCirugiasByDPI, getMedicosOfPaciente, getMedicamentosYEvolucion
+    getVisitas, getVisitasBypacienteID, addVisita, getExamenesByDPI, getCirugiasByDPI, getMedicosOfPaciente, getMedicamentosYEvolucion, getLugaresVisitados, getVisitasEspecificas
 }
