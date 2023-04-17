@@ -25,6 +25,16 @@ const getUsuarios = (req, res) => {
     })
 }
 
+const getUsuariosLugarid = (req, res) => {
+    const num_colegiado = req.params.num
+
+    pool.query(queries.getUsuarioLugarid, [num_colegiado], (error, results) => {
+        
+        if (error) throw error
+        res.status(200).json(results.rows)
+    })
+}
+
 const getUsuariosByLugarid = (req, res) => {
     const lugarid = req.params.lugarid
 
@@ -125,6 +135,7 @@ const updateLugarid = (req, res) => {
 module.exports = {
     getTipoyLugarid,
     getUsuarios,
+    getUsuariosLugarid,
     getUsuariosByLugarid,
     addUsuarios,
     updateCorreo,
